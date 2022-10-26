@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 namespace Library;
 
-public class Employer
+public class Employer:IUser
 {
     //datos personales
     public string displayName;
@@ -10,9 +10,9 @@ public class Employer
     private string LastName;
     public string Location;
     //info de contacto
-    public ArrayList contactNumbers = new ArrayList();
+    public string contactNumber;
     public string contactEmail;
-    public List<Qualifications> Reviews = new List<Qualifications>();
+    public List<Qualification> Reviews = new List<Qualification>();
 
     public Employer (string Name, string LastName, string Location, string contactNumber, string contactEmail)
     {
@@ -20,7 +20,7 @@ public class Employer
         this.Name = Name;
         this.LastName = LastName;
         this.Location = Location;
-        this.contactNumbers.Add(contactNumber);
+        this.contactNumber=contactNumber;
         this.contactEmail = contactEmail;
         
     }
@@ -28,26 +28,25 @@ public class Employer
     {
         this.displayName = newName;
     }
-    public void addNumber(string newNumber)
+    public void changeNumber(string newNumber)
     {
-        this.contactNumbers.Add(newNumber);
+        this.contactNumber=newNumber;
     }
     public void changeEmail(string newEmail)
     {
         this.contactEmail = newEmail;
     }
-    public void searchOffer()
+    public void searchOfferByCategorie()
     {
     //ni idea que poner aca
     }
-    public void searchEmployee()
+     public void searchOfferByUbication()
     {
     //ni idea que poner aca
     }
-    public void AddQualification(Qualifications calificacion){
-        this.Reviews.Add(calificacion);
-    }
-    public void Qualify(Qualifications calificacion, Employee receptor)
+
+
+    public void Qualify(Qualification calificacion, Employee receptor)
     {
         receptor.AddQualification(calificacion);
     }

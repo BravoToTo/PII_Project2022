@@ -13,7 +13,7 @@ using Library;
         {   
         }
         
-        [Test]
+        /*[Test]
         public void AddingQualification()
         {
             Employee empleado1= new Employee("Jorge", "Ventura", "Montevideo " ,"098212", "Jorge@tanto");
@@ -40,6 +40,6 @@ using Library;
             //Assert.AreEqual(expectedDescription,descripcionObtenida);
 
 
-        }
+        }*/
     }
 

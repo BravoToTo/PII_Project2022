@@ -3,7 +3,7 @@ using Library;
 
 namespace Program
 {
-    class Program
+    /*class Program
     {
         static void Main(string[] args)
         {
@@ -22,17 +22,17 @@ namespace Program
             adm.addCategory(cat, "Data Analyst");
             adm.addCategory(cat, "Fitness Instructor");
 
-            /*
+            
             cat.getCategories();
             cat.removeCategory();
             cat.getCategories();
-            */
+            
 
-            /*
+            
             Services.getServices();
             Services.removeService();
             Services.getServices();
-            */
-        }
+            
+        }*/
     }
-}
+

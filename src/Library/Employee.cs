@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 namespace Library;
 
-public class Employee
+public class Employee:IUser
 {
     //datos personales
     public string displayName;
@@ -12,7 +12,7 @@ public class Employee
     //info de contacto
     public ArrayList contactNumbers = new ArrayList();
     public string contactEmail;
-    public List<Qualifications> Reviews = new List<Qualifications>();
+    public List<Qualification> Reviews = new List<Qualification>();
 
     public Employee (string Name, string LastName, string Location, string contactNumber, string contactEmail)
     {
@@ -39,11 +39,11 @@ public class Employee
     {
     //ni idea que poner aca
     }
-    public void AddQualification(Qualifications calificacion){
+    public void AddQualification(Qualification calificacion){
         this.Reviews.Add(calificacion);
     }
-    public void Qualify(Qualifications calificacion, Employer receptor)
+    public void Qualify(Qualification calificacion, Employer receptor)
     {
-        receptor.AddQualification(calificacion);
+        
     }
 }
