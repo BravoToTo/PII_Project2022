@@ -53,12 +53,7 @@ namespace Program
             emp.addContracts(emp);
             emp.printContracts();
 
-            /*
-            User user1 = new User ("Pedro", "Gonzalez","012345678","aaa@gmail.com");
-            user1.makeUser("Employer");
-            User user2 = new User ("Juan","Sosa", "0156", "asd@gmail.com");
-            user2.makeUser("Employer");
-            */
+            
         }
     }
 }
