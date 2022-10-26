@@ -37,22 +37,22 @@ public sealed class UserManager
         }
     }
 
-    public List<User> GetEmployees() {
-        List<User> list = new List<User>();
-        foreach (User item in this.Users)
+    public List<IUser> GetEmployees() {
+        List<IUser> list = new List<IUser>();
+        foreach (IUser item in this.Users)
         {
-            if (item.Rol == "employee")
+            if (item is Employee)
             {
                 list.Add(item);
             }
         }
         return list;
     }
-    public List<User> GetEmployers() {
-        List<User> list = new List<User>();
-        foreach (User item in this.Users)
+    public List<IUser> GetEmployers() {
+        List<IUser> list = new List<IUser>();
+        foreach (IUser item in this.Users)
         {
-            if (item.Rol == "employer")
+            if (item is Employer)
             {
                 list.Add(item);
             }
