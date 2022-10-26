@@ -4,7 +4,7 @@ namespace Library;
 
 public class Admin
 {
-    public void addCategory(Categories cat, string category){
+    public void addCategory(Category cat, string category){
         if (!string.IsNullOrEmpty(category))
         {
             //Agregar categoria

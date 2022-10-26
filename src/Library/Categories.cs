@@ -3,18 +3,18 @@ using System.Collections.Generic;
 
 namespace Library;
 
-public class Categories {
-    private List<string> Category { get; set; }= new List<string>();
+public class Category {
+    private List<string> category { get; set; }= new List<string>();
 
-    public Categories() {
+    public Category() {
         Populate();
     }
-    public void Add(Categories cat, string category){
-        cat.Category.Add(category);
+    public void Add(Category cat, string category){
+        cat.category.Add(category);
     }
 
     public void getCategories() {
-        foreach (string item in this.Category)
+        foreach (string item in this.category)
         {
             System.Console.WriteLine(item);
         }
@@ -29,6 +29,6 @@ public class Categories {
         "Bank Manager",
         "Mechanic",
         "Chef"};
-        this.Category.AddRange(init);
+        this.category.AddRange(init);
     }
 }

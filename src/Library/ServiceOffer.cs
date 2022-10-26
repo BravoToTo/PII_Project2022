@@ -5,14 +5,14 @@ namespace Library
 {
     public class ServiceOffer
     {
-        private List<Offers> Offers = new List<Offers>();
+        private List<Offer> Offers = new List<Offer>();
 
-        public void addOffer(Offers Offer) {
+        public void addOffer(Offer Offer) {
             this.Offers.Add(Offer);
         }
 
         public void getServices() {
-            foreach (Offers item in this.Offers)
+            foreach (Offer item in this.Offers)
             {
                 System.Console.WriteLine(item.Description);
             }

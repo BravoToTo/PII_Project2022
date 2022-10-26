@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 namespace Library;
 
-public class Employer
+/// <summary>
+/// Implemento interfaz ISearchoffer, encargada de devolver un string para usar en el metodo hireEmployee
+/// </summary>
+public class Employer : ISearchOffer
 {
     //datos personales
     public string displayName;
@@ -12,7 +15,8 @@ public class Employer
     //info de contacto
     public ArrayList contactNumbers = new ArrayList();
     public string contactEmail;
-    public List<Qualifications> Reviews = new List<Qualifications>();
+    public List<Qualification> Reviews = new List<Qualification>();
+    public string SearchCategory;
 
     public Employer (string Name, string LastName, string Location, string contactNumber, string contactEmail)
     {
@@ -36,19 +40,57 @@ public class Employer
     {
         this.contactEmail = newEmail;
     }
-    public void searchOffer()
-    {
-    //ni idea que poner aca
-    }
+    
     public void searchEmployee()
     {
     //ni idea que poner aca
     }
-    public void AddQualification(Qualifications calificacion){
+    public void AddQualification(Qualification calificacion){
         this.Reviews.Add(calificacion);
     }
-    public void Qualify(Qualifications calificacion, Employee receptor)
+    public void Qualify(Qualification calificacion, Employee receptor)
     {
         receptor.AddQualification(calificacion);
     }
+
+    public string searchOffer(string cat)
+    {
+        this.SearchCategory = cat;
+        return this.SearchCategory;
+    }
+    private string Hire;
+
+    /// <summary>
+    /// Este metodo lo hice para probar como sería contratar un empleado. Si la oferta es igual a la demanda, lo podría contratar
+    /// </summary>
+    /// <param name="emp"> El empleado que realizó la oferta </param>
+    /// <param name="dir"> El empleador que buscó la oferta </param>
+    /// <returns>"Hired" o "Not hired" comparando el metodo searchOffer de Employer y makeOffer de Employee.
+    
+    public void hireEmployee(Employee emp, Employer dir)
+    {
+        
+        if (dir.searchOffer(this.SearchCategory) == emp.makeOffer(emp.ServiceCategory))
+        {   
+            System.Console.WriteLine("Do you want to hire {0}?\nY => Yes \nN => No ", emp.getName());
+            Hire = System.Console.ReadLine();
+            Hire.ToLower();
+            if (Hire == "y")
+            {
+                System.Console.WriteLine("Hired");
+                emp.hired = true;
+            }
+            else 
+            {
+                System.Console.WriteLine("Not hired");
+            }
+        }
+        else
+        {
+            System.Console.WriteLine("Not hired");
+            emp.hired = false;
+        }
+    }
+
+    
 }
