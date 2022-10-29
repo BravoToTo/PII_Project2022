@@ -6,7 +6,6 @@ namespace Library
     public class OffersManager
     {
         public List<Offer> Offers = new List<Offer>();
-        CategoriesService categoriesService= new CategoriesService();
 
 
         public OffersManager(){
@@ -14,6 +13,7 @@ namespace Library
         public void addOffer(Employee employee,string Description , double Remuneration, string category) {
             Offer offer = new Offer(employee,Description,Remuneration,category);
             this.Offers.Add(offer); 
+            CategoriesService categoriesService= new CategoriesService();
             categoriesService.addCategory(category);
         }
 

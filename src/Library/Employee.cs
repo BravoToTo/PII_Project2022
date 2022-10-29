@@ -35,15 +35,5 @@ public class Employee:IUser
     {
         this.contactEmail = newEmail;
     }
-    public void makeOffer()
-    {
-    //ni idea que poner aca
-    }
-    public void AddQualification(Qualification calificacion){
-        this.Reviews.Add(calificacion);
-    }
-    public void Qualify(Qualification calificacion, Employer receptor)
-    {
-        
-    }
+    
 }

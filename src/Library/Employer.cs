@@ -36,18 +36,8 @@ public class Employer:IUser
     {
         this.contactEmail = newEmail;
     }
-    public void searchOfferByCategorie()
-    {
-    //ni idea que poner aca
-    }
-     public void searchOfferByUbication()
-    {
-    //ni idea que poner aca
+  
     }
 
 
-    public void Qualify(Qualification calificacion, Employee receptor)
-    {
-        receptor.AddQualification(calificacion);
-    }
-}
+
