@@ -2,35 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 namespace Library;
 
-public class Employer:IUser
+public class Employer : User, IUser
 {
-    //datos personales
-    public string displayName;
-    private string Name;
-    private string LastName;
-    public string Location;
-    //info de contacto
-    public string contactNumber;
-    public string contactEmail;
     public List<Qualification> Reviews = new List<Qualification>();
 
-    public Employer (string Name, string LastName, string Location, string contactNumber, string contactEmail)
+    public Employer (string name, string lastname, string id, string rol, string location, string contactnumber, string contactemail) 
+    : base(name, lastname, id, rol, location, contactemail, contactnumber)
     {
-        this.displayName = Name;
-        this.Name = Name;
-        this.LastName = LastName;
-        this.Location = Location;
-        this.contactNumber=contactNumber;
-        this.contactEmail = contactEmail;
-        
-    }
-    public void changeUsername(string newName)
-    {
-        this.displayName = newName;
+        if (string.IsNullOrEmpty(name))
+        {
+            throw new UserException("Nombre inválido");
+        }
+        else if (string.IsNullOrEmpty(lastname))
+        {
+            throw new UserException("Apellido inválido");
+        }
+        else if (string.IsNullOrEmpty(id))
+        {
+            throw new UserException("ID inválido");
+        }
+        else if (string.IsNullOrEmpty(location))
+        {
+            throw new UserException("Localización inválido");
+        }
+        else if (string.IsNullOrEmpty(contactnumber))
+        {
+            throw new UserException("Numero inválido");
+        }
+        else if (string.IsNullOrEmpty(contactemail))
+        {
+            throw new UserException("Email inválido");
+        }
+        else
+        {   
+            this.Name = name;
+            this.LastName = lastname;
+            this.ID = id;
+            this.Location = location;
+            this.contactNumber = contactnumber;
+            this.contactEmail = contactemail;
+        }
     }
     public void changeNumber(string newNumber)
     {
-        this.contactNumber=newNumber;
+        this.contactNumber = newNumber;
     }
     public void changeEmail(string newEmail)
     {
