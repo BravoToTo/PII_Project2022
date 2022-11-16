@@ -31,6 +31,26 @@ namespace Library
             CategoriesManager.Instance.addCategory(category);
         }
 
+        public void removeOffer() {
+            PrintOffers();
+            System.Console.WriteLine("\nIndique el numero de la oferta a eliminar: ");
+            this.Offers.RemoveAt(int.Parse(System.Console.ReadLine())-1);
+        }
+
+        public void removeOffer(Offer offer) {
+            Offers.Remove(offer);
+        }
+
+        public void PrintOffers()
+        {
+            int count = 1;
+            foreach (Offer item in this.Offers)
+            {
+                System.Console.WriteLine($"{count} - {item.employee.Name} => {item.Description}\n");
+                count++;
+            }
+        }
+
         public void getoOffersByCategory(string category) {
             
             List<Offer> offersByCategory= new List<Offer>();
