@@ -9,7 +9,7 @@ namespace Library
         private DateTime initDate;
         private DateTime finalDate;
         public string jobs;
-        public bool IsValid;
+        public bool Finished = false;
         public bool Review = false;
         public Employee employee;
         public Employer employer;
@@ -22,6 +22,10 @@ namespace Library
             this.finalDate = finalDate;
             this.jobs = jobs;
 
+            var timeout = new TimeOutContract();
+            timeout.contract = this;
+            var timer = new CountdownTimer();
+            timer.Register(((long)(finalDate - initDate).TotalMilliseconds),timeout);
         }
         
        public DateTime getInitDate()
@@ -50,20 +54,13 @@ namespace Library
         // No se como mejorar lo del atributo si esta vigente. Pense en que si no tiene fecha de culminacion es que el contrato es valido y el trabajador sigue con contrato. 
         // Si la fecha de finalizacion es "-" es porque el trabajor sigue trabajando, por lo que  el contrato seria true, si es distinto a "-" es porque el contrato finalizo
         // No se si quieren dejarlo asi o quuieren modificar eso, porque no se me ocurre otra cosa. 
-        public void isValid(string finalDate)
+        public void ended()
         {
-            if (finalDate != "-")
-            {
-                IsValid = false;
-            }
-            else 
-            {
-                IsValid = true;
-                var timeout = new TO();
-                timeout.contract = this;
-                var timer = new CountdownTimer();
-                timer.Register(60000,timeout);
-            }
+            this.Finished = true;
+            var timeout = new TimeOutReview();
+            timeout.contract = this;
+            var timer = new CountdownTimer();
+            timer.Register(60000,timeout);
         }
     }
 }

@@ -62,12 +62,12 @@ public sealed class ContractManager
         }
         return list;
     }
-    public List<Contract> getValidContracts(IUser user)
+    public List<Contract> getFinishedContracts(IUser user)
     {
         List<Contract> list = new List<Contract>();
         foreach (Contract item in this.contracts)
         {
-            if (item.IsValid == true)
+            if (item.Finished == true)
             {    
                 if (item.employer == ((Employer)user) || item.employee == ((Employee)user) )
                 {
