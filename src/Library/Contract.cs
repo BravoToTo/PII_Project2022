@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -5,8 +6,8 @@ namespace Library
 {
     public class Contract : IContract
     {
-        private string initDate;
-        private string finalDate;
+        private DateTime initDate;
+        private DateTime finalDate;
         public string jobs;
         public bool IsValid;
         public bool Review = false;
@@ -15,7 +16,7 @@ namespace Library
         public bool employeeReviewed = false;
         public bool employerReviewed = false;
 
-        public Contract(string initDate, string finalDate, string jobs, Employer employer, Employee employee)
+        public Contract(DateTime initDate, DateTime finalDate, string jobs, Employer employer, Employee employee)
         {
             this.initDate = initDate;
             this.finalDate = finalDate;
@@ -23,20 +24,20 @@ namespace Library
 
         }
         
-       public string getInitDate()
+       public DateTime getInitDate()
        {
         return this.initDate;
        }
-       public string getFinalDate()
+       public DateTime getFinalDate()
        {
         return this.finalDate;
        }
        
-       public void setInitDate(string newInitDate)
+       public void setInitDate(DateTime newInitDate)
        {
         this.initDate = newInitDate;
        } 
-       public void setFinalDate(string newFinalDate)
+       public void setFinalDate(DateTime newFinalDate)
        {
         this.finalDate = newFinalDate;
        }
