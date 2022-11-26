@@ -35,5 +35,6 @@ namespace Ucu.Poo.TelegramBot
         /// caso de error por ejemplo.
         /// </summary>
         void Cancel(Message message);
+
     }
 }

@@ -1,11 +1,14 @@
+
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 using Telegram.Bot.Types;
 using Library;
 namespace Ucu.Poo.TelegramBot
 {
     /// <summary>
+
     /// Un "handler" del patrón Chain of Responsibility que implementa el comando "dirección".
     /// </summary>
     public class OffersHandler : BaseHandler
@@ -106,11 +109,20 @@ namespace Ucu.Poo.TelegramBot
                     response= caseCategory(); 
                     this.stateForUser.Remove(message.From.Id);
                 }
+                else if (dato!=null & dato.ToLower()=="reputation")
+                {                
+                    response= caseReputation(); 
+                    this.stateForUser.Remove(message.From.Id);
+                }
                 else
                 {
                     // Si no encuentra la dirección se la pide de nuevo y queda en el estado AddressPrompt
                     response = USERNOTFOUND;
                 }
+            }
+            else
+            {
+              response = string.Empty;
             }
             
         }
@@ -155,6 +167,34 @@ namespace Ucu.Poo.TelegramBot
             /// El resultado de la búsqueda de la dirección ingresada.
             /// </summary>
            // public IAddressResult Result { get; set; }
+
+
+        }
+        public string caseCategory(string category)
+        {
+            var list = OffersManager.Instance.getOffersCategories(category);
+
+            var concString = "";
+            foreach (Offer offer in list)
+            {
+                concString += $"Name: {offer.employee.Name} | Description: {offer.Description} | Remuneration: {offer.Remuneration}\n";
+            }
+            return concString;
+        }
+        /*public string caseUbication(string ubication)
+        {
+
+        }*/
+        public string caseReputation()
+        {
+            var list = OffersManager.Instance.sortOffersByReputation();
+            var concString = "";
+            foreach (Offer offer in list)
+            {
+                concString += $"Name: {offer.employee.Name} | Description: {offer.Description} | Remuneration: {offer.Remuneration}\n";
+            }
+            return concString;
+
         }
     }
 }

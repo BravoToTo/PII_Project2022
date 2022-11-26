@@ -79,7 +79,10 @@ namespace Ucu.Poo.TelegramBot
                 throw new InvalidOperationException("No hay palabras clave que puedan ser procesadas");
             }
 
-            return this.Keywords.Any(s => message.Text.Equals(s, StringComparison.InvariantCultureIgnoreCase));
+
+            return this.Keywords.Any(s => message.Text.Split(" ")[0].Equals(s, StringComparison.InvariantCultureIgnoreCase));
+
+        
         }
 
         /// <summary>
@@ -117,6 +120,7 @@ namespace Ucu.Poo.TelegramBot
             if (this.Next != null)
             {
                 this.Next.Cancel(message);
+
             }
         }
     }
