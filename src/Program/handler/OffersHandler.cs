@@ -48,7 +48,7 @@ namespace Ucu.Poo.TelegramBot
         /// <param name="next">El próximo "handler".</param>
         public OffersHandler(BaseHandler next):base(next)
         {
-            this.Keywords = new string[] {"offers"};
+            this.Keywords = new string[] {"oferta"};
         
         }
 

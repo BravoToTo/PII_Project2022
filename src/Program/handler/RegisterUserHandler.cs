@@ -48,7 +48,7 @@ namespace Ucu.Poo.TelegramBot
         /// <param name="next">El próximo "handler".</param>
         public RegisterUserHandler(BaseHandler next):base(next)
         {
-            this.Keywords = new string[] {"register"};
+            this.Keywords = new string[] {"registrar"};
         
         }
 
