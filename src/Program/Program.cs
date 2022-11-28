@@ -117,10 +117,11 @@ namespace Ucu.Poo.TelegramBot
                 new OffersHandler(
                 new CreateContractHandler(
                 new RegisterUserHandler(
+                new HelpHandler(
                 new QualifyHandler(
                 new AddressHandler(new AddressFinder(client),
                 new DistanceHandler(new DistanceCalculator(client), null)
-            ))))));
+            )))))));
 
 
             var cts = new CancellationTokenSource();
