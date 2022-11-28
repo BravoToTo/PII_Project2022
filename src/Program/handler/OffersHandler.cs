@@ -248,6 +248,7 @@ namespace Ucu.Poo.TelegramBot
             foreach (Offer offer in list)
             {
                 concString += $"Name: {offer.employee.Name} | ID: {offer.employee.ID} | Remuneration: {offer.Remuneration} | Description: {offer.Description}\n";
+
             }
             return concString;
         }
@@ -263,6 +264,7 @@ namespace Ucu.Poo.TelegramBot
                 if (distance.Time<= 90)
                 {
                     sortedOffers+= $"Name: {offer.employee.Name} | ID: {offer.employee.ID} | Category: {offer.Category} | Remuneration: {offer.Remuneration} | Descrption: {offer.Description}\n";
+
                 }
             }
             return sortedOffers;                      
@@ -274,6 +276,7 @@ namespace Ucu.Poo.TelegramBot
             foreach (Offer offer in list)
             {
                 concString += $"Name: {offer.employee.Name} | ID: {offer.employee.ID} | Category: {offer.Category} | Remuneration: {offer.Remuneration} | Description: {offer.Description}\n";
+
             }
             return concString;
 
