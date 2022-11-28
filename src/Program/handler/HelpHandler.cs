@@ -37,7 +37,7 @@ namespace Ucu.Poo.TelegramBot
         /// </summary>
         /// <param name="next">Un buscador de direcciones.</param>
         /// <param name="next">El próximo "handler".</param>
-        public QualifyHandler(BaseHandler next):base(next)
+        public HelpHandler(BaseHandler next):base(next)
         {
             this.Keywords = new string[] {"help"};
         
