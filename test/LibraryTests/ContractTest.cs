@@ -45,6 +45,7 @@ namespace Library.Test
             ContractManager.Instance.createContracts(12,"Jardinero",employee, employer);
             Assert.IsNotEmpty(ContractManager.Instance.getContracts(employee));
         }
+       
         [Test]
         public void getContractTestError()
         {
@@ -54,6 +55,7 @@ namespace Library.Test
             // Compruebo que no agregue el contrato debido a la fecha inválida
             Assert.IsNotEmpty(ContractManager.Instance.getContracts(employee));
         }
+       
         [Test]
         public void getFinishedContractsTest()
         {
@@ -66,6 +68,7 @@ namespace Library.Test
             }
             Assert.IsNotEmpty(ContractManager.Instance.getFinishedContracts(employee));
         }
+       
         [Test]
         public void getFinishedContractsTestError()
         {
@@ -75,6 +78,35 @@ namespace Library.Test
             // Compruebo que no se agregue ningún contrato no finalizado
             Assert.IsEmpty(ContractManager.Instance.getFinishedContracts(employee));
         }
+        
+        [Test]
+        public void getInitDateTest()
+        {
+            Employee employee = new Employee ("Gonzalo", "Cañete", "gonza.cañete", "Montevideo","099701004","gonzalo@gmail.com");
+            Employer employer = new Employer ("Cristiano", "Ronaldo", "CR7", "Manchester", "12345678", "CR7@gmail.com");
+            ContractManager.Instance.createContracts(12,"Jardinero",employee, employer);
+            foreach (Contract contract in ContractManager.Instance.contracts)
+            {
+                //System.Console.WriteLine(contract.getInitDate());
+                Assert.IsNotNull(contract.getInitDate());
+            }
+            
+        }   
+
+        [Test]
+        public void setInitDateTest()
+        {
+            Employee employee = new Employee ("Gonzalo", "Cañete", "gonza.cañete", "Montevideo","099701004","gonzalo@gmail.com");
+            Employer employer = new Employer ("Cristiano", "Ronaldo", "CR7", "Manchester", "12345678", "CR7@gmail.com");
+            ContractManager.Instance.createContracts(12,"Jardinero",employee, employer);
+            foreach (Contract contract in ContractManager.Instance.contracts)
+            {
+                contract.setInitDate(System.DateTime.Now.AddHours(1));
+                Assert.IsNotNull(contract.getInitDate());
+                System.Console.WriteLine(contract.getInitDate());
+            }
+        }
+        
         
     }
 }
