@@ -17,6 +17,7 @@ public abstract class User : IUser
 
     public User(string name, string lastname, string id, string location, string contactnumber, string contactemail) {
         this.Name = name;
+        this.LastName = lastname;
         this.ID = id;
         this.Location = location;
         this.contactNumber = contactnumber;
