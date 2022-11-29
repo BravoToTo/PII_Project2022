@@ -106,7 +106,49 @@ namespace Library.Test
                 System.Console.WriteLine(contract.getInitDate());
             }
         }
-        
+
+        [Test]
+        public void endedTest()
+        {
+            Employee employee = new Employee ("Gonzalo", "Cañete", "gonza.cañete", "Montevideo","099701004","gonzalo@gmail.com");
+            Employer employer = new Employer ("Cristiano", "Ronaldo", "CR7", "Manchester", "12345678", "CR7@gmail.com");
+            ContractManager.Instance.createContracts(12,"Jardinero",employee, employer);
+            foreach (Contract contract in ContractManager.Instance.contracts)
+            {
+                contract.ended();
+                const bool expected = true;
+                Assert.AreEqual(expected, contract.Finished);
+            }
+        }
+
+        [Test]
+        public void setJobsTest()
+        {
+            Employee employee = new Employee ("Gonzalo", "Cañete", "gonza.cañete", "Montevideo","099701004","gonzalo@gmail.com");
+            Employer employer = new Employer ("Cristiano", "Ronaldo", "CR7", "Manchester", "12345678", "CR7@gmail.com");
+            ContractManager.Instance.createContracts(12,"Jardinero",employee, employer);
+            foreach (Contract contract in ContractManager.Instance.contracts)
+            {
+                contract.setJobs("Cocinero");
+                const string expected = "Cocinero";
+                Assert.AreEqual(expected, contract.jobs);
+            }
+        }
+
+        [Test]
+        public void setFinalDateTest()
+        {
+            Employee employee = new Employee ("Gonzalo", "Cañete", "gonza.cañete", "Montevideo","099701004","gonzalo@gmail.com");
+            Employer employer = new Employer ("Cristiano", "Ronaldo", "CR7", "Manchester", "12345678", "CR7@gmail.com");
+            ContractManager.Instance.createContracts(12,"Jardinero",employee, employer);
+            foreach (Contract contract in ContractManager.Instance.contracts)
+            {
+                System.Console.WriteLine(contract.getFinalDate()); 
+                contract.setFinalDate(System.DateTime.Now.AddMonths(1));
+                System.Console.WriteLine(contract.getFinalDate());
+                Assert.IsNotNull(contract.getFinalDate());
+            }
+        }
         
     }
 }
