@@ -25,11 +25,11 @@ public sealed class UserManager
     public void CreateUser(string name, string lastname, string id, string rol, string location, string contactnumber, string contactemail) {
         if (string.Equals(rol.ToLower(), "employer"))
         {
-            Users.Add(new Employer(name, lastname, id, rol, location, contactnumber, contactemail));
+            Users.Add(new Employer(name, lastname, id, location, contactnumber, contactemail));
         } 
         else if (string.Equals(rol.ToLower(), "employee"))
         {
-            Users.Add(new Employee(name, lastname, id, rol, location, contactnumber, contactemail));      
+            Users.Add(new Employee(name, lastname, id, location, contactnumber, contactemail));      
         }
         else
         {
@@ -37,26 +37,33 @@ public sealed class UserManager
         }
     }
 
-    public List<IUser> GetEmployees() {
-        List<IUser> list = new List<IUser>();
-        foreach (IUser item in this.Users)
+    public IUser Login(string id)
+    {
+        foreach (IUser user in this.Users)
         {
-            if (item is Employee)
+            if (CheckCredentials(user, id))
             {
-                list.Add(item);
+                return user;
             }
         }
-        return list;
+        return null;
     }
-    public List<IUser> GetEmployers() {
-        List<IUser> list = new List<IUser>();
-        foreach (IUser item in this.Users)
+
+    public bool CheckCredentials(IUser user, string id) {
+        if (user is Employee)
         {
-            if (item is Employer)
+            if (((Employee)user).ID.Equals(id, StringComparison.OrdinalIgnoreCase))
             {
-                list.Add(item);
+                return true;
             }
         }
-        return list;
+        else
+        {
+            if (((Employer)user).ID.Equals(id, StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

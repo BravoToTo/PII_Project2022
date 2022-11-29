@@ -32,22 +32,8 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/src/Program/Program.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "test",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "test",
-                "${workspaceFolder}/test/LibraryTests/LibraryTests.csproj",
-                "/p:CollectCoverage=true",
-                "/p:CoverletOutputFormat=lcov",
-                "/p:CoverletOutput=lcov.info"
+                "--project",
+                "${workspaceFolder}/src/Program/Program.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

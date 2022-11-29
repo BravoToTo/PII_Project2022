@@ -1,14 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 namespace Library;
 
 public class Employee : User, IUser
 {
+<<<<<<< HEAD
     public List<Qualification> Reviews = new List<Qualification>();
+=======
+    public bool hired = false; // Esto lo hice para certificar una contratacion
+>>>>>>> master
 
-    public Employee (string name, string lastname, string id, string rol, string location, string contactnumber, string contactemail) 
-    : base(name, lastname, id, rol, location, contactemail, contactnumber)
+    public Employee (string name, string lastname, string id, string location, string contactnumber, string contactemail) 
+    : base(name, lastname, id, location, contactemail, contactnumber)
     {
         if (string.IsNullOrEmpty(name))
         {
@@ -43,9 +48,11 @@ public class Employee : User, IUser
             this.contactNumber = contactnumber;
             this.contactEmail = contactemail;
         }
+        
     }
-    public void changeNumber(string newNumber)
+    public void addOffer(string description, double remuneration, string category)
     {
+<<<<<<< HEAD
         this.contactNumber = newNumber;
     }
     public void changeEmail(string newEmail)
@@ -62,5 +69,8 @@ public class Employee : User, IUser
     public void Qualify(Qualification calificacion, Employer receptor)
     {
         receptor.AddQualification(calificacion);
+=======
+        OffersManager.Instance.addOffer(this,description,remuneration,category);
+>>>>>>> master
     }
 }
