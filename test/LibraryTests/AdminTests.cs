@@ -28,8 +28,19 @@ namespace LibraryTests
                 Assert.AreEqual(Expected, item.Name);
                 counter++;
             }
-
-
         }
+
+/// <summary>
+/// Test de la clase agregada al administrador
+/// </summary>
+        public void getMaximum(155)
+        {
+            Employer empleador = new Employer(155);
+
+            foreach (Employer empleador in this.Employer)
+            	{
+                    Console.WriteLine(QualificationManager.Instance.getAverage(this.Reviews).Max());
+                }
+        }  
     }
 }
