@@ -71,6 +71,18 @@ public class Employer : User, IUser
             ContractManager.Instance.createContracts(1, offer.Category, offer.employee, this);
         }
     }
+    public int MaxRating(Employer employer)
+    {
+        int highestRating = 0;
+        foreach (Qualification Q in employer.Reviews)
+        {
+            if (Q.rating > highestRating)
+            {
+                highestRating = Q.rating;
+            }
+        }
+        return highestRating;
+    }
 }
     
 
