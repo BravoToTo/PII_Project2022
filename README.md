@@ -17,6 +17,7 @@ Comandos utiles para interactuar con el bot:
 Los parametros anteriores son palabras claves que sirven para iniciar un dialogo con el bot, el cual luego va preguntando los datos a recaudar.
 
 Para registrar un administrador se debe realizar los siguientes pasos:
+
 register -> Nombre y Apellido -> admin
 
 Para comprobar la nueva historia de usuario pedida en la defensa se deben realizar los siguientes pasos:
