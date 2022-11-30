@@ -41,7 +41,11 @@ public abstract class User : IUser
     {
         return ContractManager.Instance.getContracts(this);
     }
-    public double getQualy()
+    public int getMaxQualification()
+    {
+        return QualificationManager.Instance.getMaxQualification(this.Reviews);
+    }
+    public double getAverageQualy()
     {
         return QualificationManager.Instance.getAverage(this.Reviews);
     }

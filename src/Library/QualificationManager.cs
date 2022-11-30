@@ -19,6 +19,18 @@ public sealed class QualificationManager
     }
     private QualificationManager(){}
 
+    public int getMaxQualification (List<Qualification> list)
+    {
+        int max = 0;
+        foreach (Qualification a in list)
+        {
+            if (max < a.rating)
+            {
+                max = a.rating;
+            }
+        }
+        return max;
+    }
     public double getAverage (List<Qualification> list)
     {
         double average = 0;

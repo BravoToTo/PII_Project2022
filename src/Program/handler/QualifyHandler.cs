@@ -10,6 +10,7 @@ namespace Ucu.Poo.TelegramBot
     /// </summary>
     public class QualifyHandler : BaseHandler
     {
+        public const string OPCIONES = "Indique el numero de la opción deseada \n1 - Calificar a un usuario \n2 - Obtener mayor calificacion de un empleador (Admin-Only)";
         public const string PREGUNTAID = "Ingrese el ID del usuario";
         public const string PREGUNTARATING = "Ingrese el rating numerico (de 1 a 5)";
         public const string PREGUNTACOMMENT = "Ingrese algun comentario adicional";
@@ -97,8 +98,51 @@ namespace Ucu.Poo.TelegramBot
             if (state == State.Start)
             {
                 // En el estado Start le pide la dirección y pasa al estado AddressPrompt
-                this.stateForUser[message.From.Id] = State.PreguntaId;
-                response = PREGUNTAID;
+                this.stateForUser[message.From.Id] = State.Opciones;
+                response = OPCIONES;
+            }
+            else if (state == State.Opciones)
+            {
+                this.Data[message.From.Id].PrimeraPregunta = message.Text.ToString();
+                if (this.Data[message.From.Id].PrimeraPregunta == "1")
+                {
+                    this.stateForUser[message.From.Id] = State.PreguntaId;
+                    response = PREGUNTAID;
+                }
+                else if (this.Data[message.From.Id].PrimeraPregunta == "2")
+                {
+                    if (Admin.Instance.Administrators.Contains(message.From.Id.ToString()))
+                    {
+                        this.stateForUser[message.From.Id] = State.MayorCalificacion;
+                        response = PREGUNTAID;
+                    }
+                    else
+                    {
+                        response = "Error, usted no es administrador.";
+                        this.stateForUser.Remove(message.From.Id);
+                        this.Data.Remove(message.From.Id);
+                    }
+                }
+                else
+                {
+                    response = "Opcion incorrecta, debe ingresar el numero asociado a la opcion que desea.";
+                }
+
+            }
+            else if (state == State.MayorCalificacion)
+            {
+                this.Data[message.From.Id].UserId = message.Text.ToString();
+                var user= UserManager.Instance.Users.Find(i => i.ID == this.Data[message.From.Id].UserId);
+                if(user!=null)
+                {
+                    response = $"La maxima calificación de este usuario es: {user.getMaxQualification().ToString()}";
+                    this.stateForUser.Remove(message.From.Id);
+                    this.Data.Remove(message.From.Id);
+                }
+                else
+                {
+                    response = "Usuario no encontrado. Intente nuevamente";
+                }
             }
             else if (state == State.PreguntaId)
             {
@@ -212,9 +256,11 @@ namespace Ucu.Poo.TelegramBot
         public enum State
         {
             Start,
+            Opciones,
             PreguntaId,
             PreguntaRating,
-            PreguntaComment
+            PreguntaComment,
+            MayorCalificacion
         }
 
         /// <summary>
@@ -222,7 +268,7 @@ namespace Ucu.Poo.TelegramBot
         /// </summary>
         private class UserData
         {
-            
+            public string PrimeraPregunta { get; set; }
             public string UserId { get; set; }
             public IUser User { get; set; }
             public int Rating { get; set; }

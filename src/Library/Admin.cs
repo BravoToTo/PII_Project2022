@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Library;
 
@@ -18,11 +19,16 @@ public class Admin
             return instance;
         }
     }
+    public List<string> Administrators = new List<string>();
    
-   public void addCategory(string category)
-   {
+    public void createAdmin(string ID)
+    {
+        this.Administrators.Add(ID);
+    }
+    public void addCategory(string category)
+    {
         CategoriesManager.Instance.addCategory(category);
-   }
+    }
 
   
 }

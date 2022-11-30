@@ -121,18 +121,31 @@ namespace Ucu.Poo.TelegramBot
             }
             else if (state == State.RolPregunta)
                 {
-                    if(message.Text.ToString()!=null & (message.Text.ToString().ToLower()== "empleado" | message.Text.ToString().ToLower()== "empleador"))
+                    if(message.Text.ToString()!=null & (message.Text.ToString().ToLower()== "empleado" | message.Text.ToString().ToLower()== "empleador") | message.Text.ToString().ToLower()== "admin")
                     {
-                        if (message.Text.ToString() == "empleado")
+                        if (message.Text.ToString().ToLower() == "empleado")
                         {
                             this.Data[message.From.Id].Rol = "employee";
+                            this.stateForUser[message.From.Id] = State.LocationPregunta;
+                            response = LOCATIONPREGUNTA;
                         } 
-                        else 
+                        else if (message.Text.ToString().ToLower() == "empleador")
                         {
                             this.Data[message.From.Id].Rol = "employer";
+                            this.stateForUser[message.From.Id] = State.LocationPregunta;
+                            response = LOCATIONPREGUNTA;
                         }
-                        this.stateForUser[message.From.Id] = State.LocationPregunta;
-                        response = LOCATIONPREGUNTA;
+                        else if (message.Text.ToString().ToLower() == "admin")
+                        {
+                            Admin.Instance.createAdmin(message.From.Id.ToString());
+                            this.stateForUser.Remove(message.From.Id);
+                            this.Data.Remove(message.From.Id);
+                            response = "Nuevo administrador registrado.";
+                        }
+                        else
+                        {
+                            response = "Rol no encontrado. Intente nuevamente";
+                        }
                     }
                     else
                     {

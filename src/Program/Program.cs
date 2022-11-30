@@ -99,6 +99,10 @@ namespace Ucu.Poo.TelegramBot
             
             //Cliente para trabajar con la busqueda de ofertas mediante la ubicacion.
             //LocationApiClient client = new LocationApiClient();
+            UserManager.Instance.CreateUser("Lucas","Alegre","232323","employee","Montevideo", "23423423","ksdfds@dsfds");
+            UserManager.Instance.Users[0].AddQualification(new Qualification(1, "a"));
+            UserManager.Instance.Users[0].AddQualification(new Qualification(3, "a"));
+            UserManager.Instance.Users[0].AddQualification(new Qualification(5, "a"));
 
             Bot = new TelegramBotClient(token);
             client = new LocationApiClient();
