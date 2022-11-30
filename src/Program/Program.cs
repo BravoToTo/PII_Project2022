@@ -94,7 +94,7 @@ namespace Ucu.Poo.TelegramBot
         /// Punto de entrada al programa.
         /// </summary>
         public static void Main()
-        {
+        {  
             Start();
             
             //Cliente para trabajar con la busqueda de ofertas mediante la ubicacion.
@@ -102,16 +102,25 @@ namespace Ucu.Poo.TelegramBot
 
             Bot = new TelegramBotClient(token);
             client = new LocationApiClient();
-
+            /*Para poder correr el bot y obtener la mayor puntuacion de un usuario,
+            tengo que crear un employee en el program y agregar una oferta, para yo poder contratarlo
+            mediante el bot, y luego de terminado el contrato, calificarlo y luego ver las calificaciones.
+            */
+            UserManager.Instance.CreateUser("liucas","alegre","123456","employee","montevideo", "029282","dsfsdf@sa");
+            UserManager.Instance.CreateUser("jose","joselo","446443","employer","montevideo", "029282","dsfsdf@sa");
+            OffersManager.Instance.addOffer((Employee)UserManager.Instance.Users.Find(i => i.ID == "123456"), "nose",2323,"Jardineria");
+            //Contract contract = new Contract(System.DateTime.Now, System.DateTime.Now,"Jardineria",(Employer)UserManager.Instance.Users.Find(i => i.ID == "123456"),(Employee)UserManager.Instance.Users.Find(i => i.ID == "446443"));
+            
             firstHandler =
                 new OffersHandler(
                 new CreateContractHandler(
                 new RegisterUserHandler(
                 new HelpHandler(
                 new QualifyHandler(
+                new GetQualificationHandler(
                 new AddressHandler(new AddressFinder(client),
                 new DistanceHandler(new DistanceCalculator(client), null)
-            ))))));
+            )))))));
 
 
 

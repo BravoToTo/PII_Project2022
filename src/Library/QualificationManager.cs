@@ -64,4 +64,33 @@ public sealed class QualificationManager
             throw new QualificationException("El rating de la review esta fuera de rango (1 a 5)");
         }
     }
-}
+    //Creo un metodo para obtener la mayor calificacion del usuario recibido.
+    public int getHigherQualification(IUser user)
+    {
+        int returnedQualy=0;
+
+        if(user is Employee)
+        {
+            List<Qualification> listQualy= ((Employee)(user)).Reviews;
+            foreach(Qualification qualification in listQualy)
+            {
+                if(qualification.rating > returnedQualy)
+                {
+                    returnedQualy= qualification.rating;
+                }
+            }
+        }
+        else
+        {
+            List<Qualification> listQualy= ((Employer)(user)).Reviews;
+            foreach(Qualification qualification in listQualy)
+            {
+                if(qualification.rating> returnedQualy)
+                {
+                    returnedQualy= qualification.rating;
+                }
+            }
+        }
+        return returnedQualy;
+    }
+} 
