@@ -56,7 +56,7 @@ public class Employer : User, IUser
             System.Console.WriteLine("{0} - {1} => {2}", counter, offer.Category, offer.employee.Name);
             counter++;
        }
-       hireEmployee(offers);
+       //hireEmployee(offers);
     }
     public void hireEmployee (List<Offer> offers)
     {

@@ -47,9 +47,9 @@ public sealed class ContractManager
        }
               
 
-        Contract contract = new Contract (System.DateTime.Now, System.DateTime.Now.AddMonths(duration), jobs, employer, employee);
+        Contract contract = new Contract (System.DateTime.Now, System.DateTime.Now.AddMinutes(duration), jobs, employer, employee);
         this.contracts.Add(contract);
-
+        
     }
     public List<Contract> getContracts(IUser user)
     {
