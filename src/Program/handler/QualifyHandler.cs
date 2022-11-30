@@ -10,7 +10,7 @@ namespace Ucu.Poo.TelegramBot
     /// </summary>
     public class QualifyHandler : BaseHandler
     {
-        public const string OPCIONES = "Indique el numero de la opción deseada \n1 - Calificar a un usuario \n2 - Obtener mayor calificacion de un empleador (Admin-Only)";
+        public const string OPCIONES = "Indique el numero de la opción deseada \n1 - Calificar a un usuario \n2 - Obtener la mayor calificacion de un empleador (Admin-Only)";
         public const string PREGUNTAID = "Ingrese el ID del usuario";
         public const string PREGUNTARATING = "Ingrese el rating numerico (de 1 a 5)";
         public const string PREGUNTACOMMENT = "Ingrese algun comentario adicional";
